@@ -214,7 +214,7 @@
 
 <script type="text/javascript">
 
-	$("#submitBtn").on("click", function(event) {
+	$("#submitBtn").on("click", function() {
 		event.preventDefault();
 		var valid = true;
 		if($("#inputName").val() === "" || $("#inputPhoto").val() === "") {
@@ -249,11 +249,12 @@
 					$("#answer10").val()
 				]
 			};
+            var currentURL = window.location.origin;
             
-			$.post("/api/friends", newUser).done(function(data) {
+			$.post(currentURL + "/api/friends", newUser, function(data) {
 				$("#bestFriend").text(data.name);
 				$("#bestFriendPhoto").attr("src", data.photo);
-				$("#bestFriendModal").modal("open");
+				$("#bestFriendModal").modal("toggle");
 			});
 		} else {
 
